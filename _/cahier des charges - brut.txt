@@ -1,0 +1,171 @@
+« OC Pizza » est un jeune groupe de pizzeria en plein essor et spécialisé dans les pizzas livrées ou à emporter. Il compte déjà 5 points de vente et prévoit d’en ouvrir au moins 3 de plus d’ici la fin de l’année. Un des responsables du groupe a pris contact avec vous afin de mettre en place un système informatique, déployé dans toutes ses pizzerias et qui lui permettrait notamment :
+
+	d’être plus efficace dans la gestion des commandes, de leur réception à leur livraison en passant par leur préparation
+	
+	de suivre en temps réel les commandes passées et en préparation ;
+	
+	de suivre en temps réel le stock d’ingrédients restants pour savoir quelles pizzas sont encore réalisables ;
+	
+	de proposer un site Internet pour que les clients puissent :
+		passer leurs commandes, en plus de la prise de commande par téléphone ou sur place,
+		payer en ligne leur commande s’ils le souhaitent – sinon, ils paieront directement à la livraison
+		modifier ou annuler leur commande tant que celle-ci n’a pas été préparée
+		de proposer un aide mémoire aux pizzaiolos indiquant la recette de chaque pizza
+
+Le client a déjà fait une petite prospection et les logiciels existants qu’il a pu trouver ne lui conviennent pas.
+
+dégager les règles de gestion fonctionnelles
+décrire le processus de prise de commande, de la réservation à la livraison
+détailler les fonctionnalités du système à mettre en place
+choisir une solution technique adaptée (vous présenterez vos choix ainsi qu’une argumentation rapide motivant ceux-ci)
+
+GESTION FONCTIONNELLE
+
+
+PRISE DE COMMANDE
+	Le client navigue sur site et choisit ses pizzas.
+	Puis Il choisit sa pate et ses supplements avec.
+	Ensuite il choisit le magasin et le mode de paiement.
+	Ces pizzas sont passees a la classe Commande.
+
+	L'employe se connecte sur son intranet et choisit son magasin.
+	Les commandes en cours sont listées par la classe Commande.
+	La pizza est :
+		soit paye, soit en attente de paiement pour le status 1
+		soit en cours, soit terminee pour le status 2
+	Une fois la pizza en cours de preparation les ingredients sont soustraient du stock.
+
+	Une fois le client arrive, l'employe recupere la commande et passe au paiement
+
+FONCTIONNALITES
+	Administration
+		Gestion des magasins
+		Gestion des utilisateurs
+
+	Stocks
+		Ajout d'ingredients
+		Ajout de produits - pizzas, boisson et autres
+		Gestion du stock par ingredient et par magasin
+
+	Commande
+		Support de filtres
+		Affichage des recettes
+
+I - 
+
+Administration
+	- Gere les utilisateurs, ajoute, modifie ou supprime. Gere le type de compte (client/employe/administrateur)
+	- Gere les magasins
+
+Stocks
+	- Permet d'ajouter des ingredients. Ensuite permet de definir le STOCK correspondant à un ingredient par magasin.
+
+Commande
+	Une fois la commande validee, elle est envoyee a cette classe et affiche dans une liste.
+
+
+II -
+#################################
+
+3 acteurs:
+	- L'administrateur
+	- L'employé
+	- Le client
+
+L'administrateur peut :
+	- ajouter des employés et definir des privileges
+	- ajouter des magasins
+	- ajouter des pizzas et des ingredients
+	- gerer les stocks
+
+L'administrateur doit pouvoir :
+	- consulter les stocks par magasin
+	- consulter les commandes
+
+L'employé peut :
+	- ajouter des commandes
+	- changer le status des commandes
+	- noter le client en cas de probleme de livraision
+
+L'employé doit pouvoir :
+	- consulter les recettes
+
+Le client peut :
+	- s'inscrire et d'identifier
+	- passer commande
+		- et la payer en ligne s'il le souhaite
+	- voir son historique
+	- etre blacklister au livraision
+
+Les points essentiels :
+	- Les commandes
+	- Les stocks
+	- Les pizzas et les ingrédients
+	- L'espace utilisateur
+
+	Les commandes :
+		- Status :
+			- En attente de payement
+			- Paye
+			- En cours de preparation
+			- Terminé
+			- Terminé et recuperé
+			- Annulé
+		- Des files d'attente par magasin :
+			- Pour pizza en attente de payemeny
+			- Pour pizza payé
+
+LES INTERFACES
+Le frontend
+Le header :
+	- Un logo (retour a l'accueil)
+	- Une banniere authentification
+
+Les menus
+	Les pizzas
+	Les magasins
+
+Le backend
+	L'intranet est accessible depuis la banière d'authentification
+
+Le header : Pareil
+
+Le menu :
+Administrateur
+	- Gerer utilisateur
+	- Gerer magasins
+	- Gerer stocks
+
+Employe
+	- Gerer commande
+
+
+L'administrateur
+1 - 
+L'administrateur ajoute les employes, les magasins et les pizzas
+Les pizzas sont ajoutees au stock
+Les stocks sont ajustes avec les quantites
+
+2 -
+L'administrateur peut tout gerer de un tableau de bord
+Il recoit des alertes en cas de stocks faibles
+
+L'utilisateur
+1 - 
+L'utilisateur s'inscrit sur le site et 
+Il choisit ses pizzas avec SUPPLEMENTS à livrer ou recuperer
+	A livrer, il peut payer a la livraision
+	A recuperer, il peut payer au magasin
+Il peut consulter son historique de commandes
+
+L'employe
+1 -
+L'employe se connecte au site et passe sur l'intranet
+Il choisit le menu commande puis son magasin
+Il peut voir toutes les pizzas payees ou en attente dans une file
+En selectionnant une pizza il a acces a la recette avec supplements
+
+2 - 
+Il peut changer le status des pizzas
+Une fois "En cours de preparation" les stocks sont soustraits et la commande n'est plus annulable
+

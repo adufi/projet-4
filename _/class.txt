@@ -1,0 +1,47 @@
+Address
+	- Id
+	- Pays
+	- Region / Dept
+	- Ville
+	- Code postal
+	- ...
+
+Utilisateur
+	- Id
+	- Code
+	- Nom / Prenom / Email
+	- Type
+	- AddressID
+
+Magasin
+	- Id
+	- Code
+	- Label
+	- AddressID
+	- 
+
+Stock
+	- Id
+	- MagasinId
+
+StockIngredient
+	- Id
+	- StockId
+	- IngredientId
+	- Quantite
+	- Mesure
+
+Produit
+	- Id
+	- Label
+	- Reference
+	- Prix
+	- Categorie
+	- ...
+	- ProduitID
+
+Ingredient
+	- Id
+	- Label
+	- ProduitID
+	- 
